@@ -1,7 +1,7 @@
 {
   "name": "Session Generator",
   "description": "WhatsApp Session Generator - Pairing Service",
-  "logo": "https://files.catbox.moe/atfp7w.jpg",
+  "logo": "https://files.catbox.moe/2857dd.jpg",
   "repository": "https://github.com/pugsly526/session",
   "keywords": ["whatsapp", "session", "pairing", "bot"],
   "success_url": "/",
