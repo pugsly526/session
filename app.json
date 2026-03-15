@@ -1,9 +1,9 @@
 {
-  "name": "Vesper-Xmd Session",
-  "description": "Vesper-Xmd WhatsApp Session Generator - Next-Gen Pairing Service",
+  "name": "Session Generator",
+  "description": "WhatsApp Session Generator - Pairing Service",
   "logo": "https://files.catbox.moe/atfp7w.jpg",
-  "repository": "https://github.com/Kevintech-hub/Vesper-Xmd",
-  "keywords": ["whatsapp", "session", "pairing", "Vesper-Xmd"],
+  "repository": "https://github.com/pugsly526/session",
+  "keywords": ["whatsapp", "session", "pairing", "bot"],
   "success_url": "/",
   "buildpacks": [
     {
