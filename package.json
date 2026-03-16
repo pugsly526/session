@@ -1,6 +1,6 @@
 {
-  "name": "june-x-session",
-  "description": "JUNE-X WhatsApp Session Generator",
+  "name": "PEAKY-BLINDER-MD-session",
+  "description": "Peaky blindersWhatsApp Session Generator",
   "main": "./voltah.js",
   "engines": {
     "npm": ">=9.7.2",
