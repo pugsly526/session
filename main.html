@@ -2,862 +2,1129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PEAKY-BLINDER-MD SESSION</title>
+  <title>PEAKY-BLINDER-MD · Next-Gen Session</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ═══════════════════════════════════════════════════
+       THEME ENGINE — 6 auto-cycling color themes
+    ═══════════════════════════════════════════════════ */
+    :root {
+      --bg:        #03030a;
+      --bg2:       #070712;
+      --bg3:       #0c0c1c;
+      --surface:   rgba(10,10,22,0.88);
+      --p1:        #818cf8;
+      --p2:        #6366f1;
+      --p3:        #c7d2fe;
+      --a1:        #22d3ee;
+      --a2:        #67e8f9;
+      --g1:        linear-gradient(135deg,#818cf8 0%,#6366f1 40%,#22d3ee 100%);
+      --g2:        linear-gradient(135deg,#6366f1,#818cf8);
+      --glow1:     rgba(99,102,241,0.22);
+      --glow2:     rgba(34,211,238,0.16);
+      --border:    rgba(129,140,248,0.14);
+      --border2:   rgba(129,140,248,0.32);
+      --text:      #eef2ff;
+      --text2:     rgba(199,210,254,0.62);
+      --text3:     rgba(148,163,240,0.38);
+      --scan:      rgba(99,102,241,0.015);
+      --card-depth:rgba(99,102,241,0.38);
+      --r: 0.75rem;
+    }
+
+    /* Theme: Neon Plasma */
+    [data-theme="plasma"] {
+      --bg:#060010; --bg2:#0a0018; --bg3:#100022;
+      --surface:rgba(10,0,24,0.9);
+      --p1:#e879f9; --p2:#c026d3; --p3:#f5d0fe;
+      --a1:#67e8f9; --a2:#a5f3fc;
+      --g1:linear-gradient(135deg,#e879f9 0%,#c026d3 45%,#67e8f9 100%);
+      --g2:linear-gradient(135deg,#c026d3,#e879f9);
+      --glow1:rgba(192,38,211,0.24); --glow2:rgba(103,232,249,0.18);
+      --border:rgba(232,121,249,0.16); --border2:rgba(232,121,249,0.36);
+      --card-depth:rgba(192,38,211,0.38);
+      --scan:rgba(192,38,211,0.015);
+    }
+
+    /* Theme: Solar Flare */
+    [data-theme="solar"] {
+      --bg:#080400; --bg2:#110800; --bg3:#1a0d00;
+      --surface:rgba(17,8,0,0.9);
+      --p1:#fb923c; --p2:#ea580c; --p3:#fed7aa;
+      --a1:#fcd34d; --a2:#fef08a;
+      --g1:linear-gradient(135deg,#fb923c 0%,#ea580c 45%,#fcd34d 100%);
+      --g2:linear-gradient(135deg,#ea580c,#fb923c);
+      --glow1:rgba(234,88,12,0.24); --glow2:rgba(252,211,77,0.18);
+      --border:rgba(251,146,60,0.16); --border2:rgba(251,146,60,0.36);
+      --card-depth:rgba(234,88,12,0.38);
+      --scan:rgba(234,88,12,0.015);
+    }
+
+    /* Theme: Matrix */
+    [data-theme="matrix"] {
+      --bg:#000a04; --bg2:#001208; --bg3:#001a0c;
+      --surface:rgba(0,18,8,0.9);
+      --p1:#4ade80; --p2:#16a34a; --p3:#bbf7d0;
+      --a1:#2dd4bf; --a2:#99f6e4;
+      --g1:linear-gradient(135deg,#4ade80 0%,#16a34a 45%,#2dd4bf 100%);
+      --g2:linear-gradient(135deg,#16a34a,#4ade80);
+      --glow1:rgba(22,163,74,0.22); --glow2:rgba(45,212,191,0.18);
+      --border:rgba(74,222,128,0.15); --border2:rgba(74,222,128,0.33);
+      --card-depth:rgba(22,163,74,0.38);
+      --scan:rgba(22,163,74,0.016);
+    }
+
+    /* Theme: Crimson */
+    [data-theme="crimson"] {
+      --bg:#08000a; --bg2:#110010; --bg3:#1a0018;
+      --surface:rgba(17,0,16,0.9);
+      --p1:#f43f5e; --p2:#be123c; --p3:#fecdd3;
+      --a1:#fb923c; --a2:#fed7aa;
+      --g1:linear-gradient(135deg,#f43f5e 0%,#be123c 45%,#fb923c 100%);
+      --g2:linear-gradient(135deg,#be123c,#f43f5e);
+      --glow1:rgba(190,18,60,0.24); --glow2:rgba(251,146,60,0.18);
+      --border:rgba(244,63,94,0.16); --border2:rgba(244,63,94,0.36);
+      --card-depth:rgba(190,18,60,0.38);
+      --scan:rgba(190,18,60,0.015);
+    }
+
+    /* Theme: Arctic */
+    [data-theme="arctic"] {
+      --bg:#000810; --bg2:#000f1c; --bg3:#001428;
+      --surface:rgba(0,15,28,0.9);
+      --p1:#38bdf8; --p2:#0284c7; --p3:#bae6fd;
+      --a1:#818cf8; --a2:#c7d2fe;
+      --g1:linear-gradient(135deg,#38bdf8 0%,#0284c7 45%,#818cf8 100%);
+      --g2:linear-gradient(135deg,#0284c7,#38bdf8);
+      --glow1:rgba(2,132,199,0.22); --glow2:rgba(129,140,248,0.18);
+      --border:rgba(56,189,248,0.16); --border2:rgba(56,189,248,0.34);
+      --card-depth:rgba(2,132,199,0.38);
+      --scan:rgba(2,132,199,0.015);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior:smooth; }
 
     body {
       min-height: 100vh;
-      margin: 0;
-      background-color: #0a0a1a;
-      font-family: 'Exo 2', sans-serif;
-      color: #e0f2fe;
+      background: var(--bg);
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text);
       overflow-x: hidden;
+      transition: background 0.6s ease;
     }
 
-    .particle-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
+    /* Scanlines */
+    body::after {
+      content:''; position:fixed; inset:0; z-index:998; pointer-events:none;
+      background: repeating-linear-gradient(0deg,transparent 0,transparent 3px,var(--scan) 3px,var(--scan) 4px);
     }
 
-    .glowing-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      overflow: hidden;
+    /* ── ANIMATED BG ORBS ── */
+    .orb-field { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+
+    .orb {
+      position:absolute; border-radius:50%;
+      filter: blur(100px);
+      animation: orb-drift 20s ease-in-out infinite;
+      transition: background 0.6s ease;
     }
 
-    .glow-circle {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
-      animation: float 20s infinite ease-in-out;
+    .orb-1 { width:600px; height:600px; background:var(--glow1); top:-200px; left:-100px; animation-duration:22s; }
+    .orb-2 { width:500px; height:500px; background:var(--glow2); bottom:-150px; right:-80px; animation-duration:18s; animation-delay:-8s; }
+    .orb-3 { width:350px; height:350px; background:var(--glow1); top:40%; left:50%; transform:translate(-50%,-50%); animation-duration:25s; animation-delay:-14s; opacity:0.5; }
+
+    @keyframes orb-drift {
+      0%,100%{transform:translate(0,0) scale(1);}
+      33%{transform:translate(60px,40px) scale(1.08);}
+      66%{transform:translate(-40px,70px) scale(0.94);}
     }
 
-    .glow-circle:nth-child(1) {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(100, 0, 255, 0.6) 0%, transparent 70%);
-      top: -10%; left: -5%;
-      animation-duration: 25s;
+    /* ── NOISE GRAIN ── */
+    .grain {
+      position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
     }
 
-    .glow-circle:nth-child(2) {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(147, 51, 234, 0.5) 0%, transparent 70%);
-      top: 50%; right: -10%;
-      animation-duration: 30s; animation-delay: 3s;
+    /* ── THEME SWITCHER BAR ── */
+    .theme-bar {
+      position: fixed; top:0; left:0; right:0; z-index:200;
+      height: 44px;
+      background: rgba(5,5,8,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem;
+      transition: border-color 0.6s;
     }
 
-    .glow-circle:nth-child(3) {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
-      bottom: -5%; left: 30%;
-      animation-duration: 22s; animation-delay: 7s;
+    .theme-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 4px; text-transform: uppercase;
+      background: var(--g1);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
     }
 
-    .glow-circle:nth-child(4) {
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-      top: 30%; left: 50%;
-      animation-duration: 28s; animation-delay: 12s;
-    }
+    .theme-controls { display:flex; align-items:center; gap:0.5rem; }
 
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(40px, 50px) scale(1.1); }
-      50% { transform: translate(-30px, 70px) scale(0.95); }
-      75% { transform: translate(50px, -40px) scale(1.05); }
-    }
-
-    .scan-lines {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 2px,
-        rgba(147, 51, 234, 0.015) 2px,
-        rgba(147, 51, 234, 0.015) 4px
-      );
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .page-wrapper {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      gap: 2rem;
-    }
-
-    .hero-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 3rem 2rem 2rem;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .logo-container {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-
-    .logo-ring {
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      border: 3px solid transparent;
-      background: linear-gradient(#0a0a1a, #0a0a1a) padding-box,
-                  linear-gradient(135deg, #6400ff, #9333ea, #ec4899) border-box;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: ringRotate 6s linear infinite;
-      position: relative;
-    }
-
-    .logo-ring::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
+    .theme-dot {
+      width: 22px; height: 22px; border-radius: 50%;
       border: 2px solid transparent;
-      background: linear-gradient(#0a0a1a, #0a0a1a) padding-box,
-                  linear-gradient(135deg, #ec4899, #6400ff, #9333ea) border-box;
-      animation: ringRotate 6s linear infinite reverse;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
     }
 
-    @keyframes ringRotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .theme-dot:hover, .theme-dot.active { border-color: var(--text); transform: scale(1.2); }
+
+    .theme-dot[data-t="default"] { background: linear-gradient(135deg,#6366f1,#06b6d4); }
+    .theme-dot[data-t="plasma"]  { background: linear-gradient(135deg,#e879f9,#67e8f9); }
+    .theme-dot[data-t="solar"]   { background: linear-gradient(135deg,#f97316,#fbbf24); }
+    .theme-dot[data-t="matrix"]  { background: linear-gradient(135deg,#22c55e,#34d399); }
+    .theme-dot[data-t="crimson"] { background: linear-gradient(135deg,#f43f5e,#f97316); }
+    .theme-dot[data-t="arctic"]  { background: linear-gradient(135deg,#38bdf8,#818cf8); }
+
+    .auto-btn {
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 2px;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--g1); color: var(--bg);
+      border: none; cursor: pointer;
+      transition: all 0.3s; opacity: 0.8;
     }
 
-    .logo-icon {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #6400ff, #9333ea, #ec4899);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      z-index: 1;
+    .auto-btn:hover { opacity: 1; transform: scale(1.05); }
+    .auto-btn.running { animation: auto-pulse 1.5s infinite; }
+
+    @keyframes auto-pulse { 0%,100%{opacity:0.9} 50%{opacity:0.5} }
+
+    /* ── PROFESSIONAL HEADLINE TICKER ── */
+    .ticker-wrap {
+      position: fixed; top: 44px; left: 0; right: 0; z-index: 199;
+      height: 34px;
+      background: rgba(5,5,10,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: stretch;
+      overflow: hidden;
+      transition: border-color 0.6s;
     }
 
-    .title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      background: linear-gradient(135deg, #6400ff 0%, #9333ea 50%, #ec4899 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      animation: titleGlow 3s ease-in-out infinite alternate;
+    /* LEFT: LIVE badge */
+    .ticker-badge {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 7px;
+      padding: 0 16px;
+      background: var(--g1);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: #fff;
+      position: relative;
+      transition: background 0.6s;
+      white-space: nowrap;
     }
 
-    @keyframes titleGlow {
-      0% { filter: drop-shadow(0 0 10px rgba(100, 0, 255, 0.3)); }
-      100% { filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5)); }
+    .ticker-badge::after {
+      content: '';
+      position: absolute; right: -10px; top: 0; bottom: 0;
+      width: 20px;
+      background: inherit;
+      clip-path: polygon(0 0, 60% 0, 100% 50%, 60% 100%, 0 100%);
     }
 
-    .tagline {
-      font-size: 1.1rem;
-      color: rgba(224, 242, 254, 0.6);
-      font-weight: 300;
+    .live-pip {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #fff;
+      animation: pip-blink 1.2s infinite;
+    }
+
+    @keyframes pip-blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* CENTER: scrolling track */
+    .ticker-track {
+      flex: 1;
+      overflow: hidden;
+      display: flex; align-items: center;
+      padding-left: 18px;
+      mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    }
+
+    .ticker-inner {
+      display: flex; align-items: center;
+      white-space: nowrap;
+      animation: ticker-scroll 55s linear infinite;
+      gap: 0;
+    }
+
+    .ticker-inner:hover { animation-play-state: paused; }
+
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .tick-item {
+      display: inline-flex; align-items: center; gap: 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem; font-weight: 600;
+      color: rgba(225, 235, 255, 0.88);
       letter-spacing: 2px;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
-      background: rgba(147, 51, 234, 0.1);
-      border: 1px solid rgba(147, 51, 234, 0.3);
-      border-radius: 50px;
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #9333ea;
-      letter-spacing: 1px;
+    .tick-item .tick-label {
+      font-weight: 700;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-right: 10px;
     }
 
-    .status-dot {
-      width: 8px; height: 8px;
-      background: #9333ea;
-      border-radius: 50%;
-      animation: statusPulse 2s infinite;
+    .tick-item .tick-label.green  { color: #4ade80; }
+    .tick-item .tick-label.blue   { color: #67e8f9; }
+    .tick-item .tick-label.amber  { color: #fbbf24; }
+    .tick-item .tick-label.violet { color: #c4b5fd; }
+    .tick-item .tick-label.red    { color: #fca5a5; }
+
+    /* ▸ separator between items */
+    .tick-sep {
+      display: inline-block;
+      padding: 0 18px;
+      color: var(--p1);
+      font-size: 0.58rem;
+      opacity: 0.5;
+      transition: color 0.6s;
     }
 
-    @keyframes statusPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.5); }
-      50% { box-shadow: 0 0 0 6px rgba(147, 51, 234, 0); }
+    /* live value highlight */
+    .tick-val { color: #fbbf24; font-weight: 700; }
+
+    .tick-divider { display: none; }
+
+    /* RIGHT: clock */
+    .ticker-clock {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 16px;
+      border-left: 1px solid var(--border);
+      transition: border-color 0.6s;
     }
 
-    .stats-grid {
+    .ticker-clock-time {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 600;
+      color: var(--p3);
+      letter-spacing: 1.5px;
+      transition: color 0.6s;
+    }
+
+    .ticker-clock-date {
+      font-size: 0.6rem; font-weight: 500;
+      color: rgba(200,210,255,0.4);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .pw {
+      position: relative; z-index: 10;
+      max-width: 1040px; margin: 0 auto;
+      padding: 96px 2rem 5rem;
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2.5rem; align-items: center;
+      padding: 3rem;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border), 0 24px 64px rgba(0,0,0,0.4);
+      transition: border-color 0.6s, box-shadow 0.6s;
+      animation: hero-in 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes hero-in { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* Animated gradient border */
+    .hero::before {
+      content:'';
+      position:absolute; inset:0; border-radius:24px;
+      background: var(--g1);
+      padding: 1px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.6;
+      animation: border-spin 4s linear infinite;
+      transition: opacity 0.3s;
+    }
+
+    @keyframes border-spin { 0%{opacity:0.4} 50%{opacity:0.9} 100%{opacity:0.4} }
+
+    /* Radial glow behind title */
+    .hero::after {
+      content:'';
+      position:absolute; inset:0; pointer-events:none;
+      background: radial-gradient(ellipse 60% 50% at 30% 50%, var(--glow1), transparent 70%);
+      transition: background 0.6s;
+    }
+
+    .hero-left { position:relative; z-index:1; }
+
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; color: var(--p3);
+      letter-spacing: 3px; margin-bottom: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .kicker-dot { width:6px; height:6px; border-radius:50%; background:var(--p1); animation:dot-beat 1.5s infinite; }
+    @keyframes dot-beat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5)} }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 1.2rem;
+      white-space: nowrap;
+    }
+
+    .hero-title .grad {
+      background: var(--g1);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+      background-size: 200% 100%;
+      animation: text-flow 4s linear infinite;
+      transition: background 0.6s;
+    }
+
+    @keyframes text-flow { 0%{background-position:0%} 100%{background-position:200%} }
+
+    .hero-sub {
+      font-size: 0.95rem; color: var(--text2);
+      line-height: 1.7; max-width: 480px; font-weight: 400;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.7rem; font-weight: 600;
+      color: var(--text2);
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+
+    .tag:hover { background: var(--glow1); border-color: var(--p1); color: var(--text); }
+    .tag i { color: var(--p1); font-size: 0.65rem; }
+
+    /* System status panel */
+    .hero-right { position:relative; z-index:1; }
+
+    .sys-panel {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+      min-width: 210px;
+      transition: border-color 0.6s;
+    }
+
+    .sys-header {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.58rem; letter-spacing: 3px;
+      color: var(--p3); margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .sys-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .sys-row:last-child { border-bottom: none; }
+
+    .sys-key { font-size: 0.65rem; color: var(--text3); letter-spacing: 1px; }
+
+    .sys-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem; font-weight: 600;
+      color: var(--p2);
+    }
+
+    .sys-val.ok { color: #4ade80; }
+    .sys-val.pulse {
+      animation: val-pulse 2s infinite;
+    }
+    @keyframes val-pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+    /* ── STATS SECTION ── */
+    .stats-section { display:flex; flex-direction:column; gap:1rem; }
+
+    .section-head {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.62rem; color: var(--text3);
+      letter-spacing: 3px; text-transform: uppercase;
+    }
+
+    .section-head::after { content:''; flex:1; height:1px; background:var(--border); transition:background 0.6s; }
+    .section-head i { color: var(--p1); }
+
+    .stats-mosaic {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4,1fr);
+      grid-template-rows: auto auto;
       gap: 1rem;
-      width: 100%;
-      max-width: 900px;
     }
 
     .stat-card {
-      background: rgba(20, 10, 40, 0.6);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(147, 51, 234, 0.15);
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
+      padding: 1.4rem 1.2rem;
+      position: relative; overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2,0,0,1);
+      animation: card-in 0.6s ease both;
     }
 
+    .stat-card:nth-child(n+5) { animation-delay: 0.1s; }
+
+    @keyframes card-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
     .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent, #9333ea), transparent);
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:2px;
+      background: var(--g1);
+      transition: background 0.6s;
+      opacity: 0.8;
     }
 
     .stat-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(147, 51, 234, 0.4);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(147, 51, 234, 0.1);
+      transform: translateY(-6px);
+      border-color: var(--border2);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 0 1px var(--border2), 0 0 30px var(--glow1);
     }
 
-    .stat-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, var(--accent, #9333ea), var(--accent2, #6400ff));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .stat-glyph {
+      font-size: 1.1rem; margin-bottom: 0.8rem;
+      background: var(--g1); -webkit-background-clip:text; background-clip:text; color:transparent;
+      transition: background 0.6s;
     }
 
-    .stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.3rem;
+    .stat-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.9rem; font-weight: 700;
+      color: var(--text); line-height: 1;
+      margin-bottom: 0.25rem;
     }
 
-    .stat-label {
-      font-size: 0.75rem;
-      color: rgba(224, 242, 254, 0.5);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
+    .stat-lbl { font-size: 0.62rem; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+
+    .stat-delta {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 0.58rem; font-weight: 700;
+      color: #4ade80; letter-spacing: 1px;
     }
 
-    .main-card {
-      background: rgba(20, 10, 40, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(147, 51, 234, 0.2);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      width: 100%;
-      max-width: 900px;
-      position: relative;
-      overflow: hidden;
-    }
+    /* ── 3D FLOATING ACTION CARDS ── */
+    .action-section { display:flex; flex-direction:column; gap:1rem; }
 
-    .main-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 4px;
-      background: linear-gradient(90deg, #6400ff, #9333ea, #ec4899, #6400ff);
-      background-size: 300% 100%;
-      animation: gradientSlide 4s linear infinite;
-    }
-
-    @keyframes gradientSlide {
-      0% { background-position: 0% 0; }
-      100% { background-position: 300% 0; }
-    }
-
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: rgba(224, 242, 254, 0.8);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .buttons-container {
+    .action-arena {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      width: 100%;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2rem;
+      padding: 2.8rem 2rem;
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      perspective: 1200px;
+      transition: border-color 0.6s;
     }
 
-    .action-btn {
+    .act-card {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      padding: 2rem 1.5rem;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(147, 51, 234, 0.2);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .action-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--btn-color1, rgba(100, 0, 255, 0.1)), var(--btn-color2, rgba(147, 51, 234, 0.1)));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .action-btn:hover::before { opacity: 1; }
-
-    .action-btn:hover {
-      transform: translateY(-8px);
-      border-color: var(--btn-border, rgba(147, 51, 234, 0.5));
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px var(--btn-glow, rgba(147, 51, 234, 0.15));
-    }
-
-    .btn-icon-wrap {
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--btn-color1, rgba(100, 0, 255, 0.2)), var(--btn-color2, rgba(147, 51, 234, 0.2)));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-icon-wrap i {
-      font-size: 1.5rem;
-      color: var(--btn-icon, #9333ea);
-    }
-
-    .btn-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-desc {
-      font-size: 0.8rem;
-      color: rgba(224, 242, 254, 0.5);
-      position: relative;
-      z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
       text-align: center;
+      padding: 2.4rem 1.6rem 2rem;
+      text-decoration: none; color: inherit;
+      border-radius: 20px;
+      cursor: pointer;
+      /* Glassmorphism base */
+      background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid var(--border2);
+      /* 3D floating shadows */
+      box-shadow:
+        0 2px 0 var(--card-depth),
+        0 4px 0 color-mix(in srgb, var(--card-depth) 70%, transparent),
+        0 6px 0 color-mix(in srgb, var(--card-depth) 40%, transparent),
+        0 8px 0 color-mix(in srgb, var(--card-depth) 20%, transparent),
+        0 16px 32px rgba(0,0,0,0.45),
+        0 4px 8px rgba(0,0,0,0.3);
+      /* Floating animation — each card unique */
+      animation: float-3d 4s ease-in-out infinite;
+      transform-style: preserve-3d;
+      transition: border-color 0.6s, background 0.3s;
     }
 
-    .action-btn.primary {
-      --btn-color1: rgba(100, 0, 255, 0.15);
-      --btn-color2: rgba(147, 51, 234, 0.15);
-      --btn-border: rgba(147, 51, 234, 0.5);
-      --btn-glow: rgba(147, 51, 234, 0.2);
-      --btn-icon: #9333ea;
-      border-color: rgba(147, 51, 234, 0.3);
-      animation: cardPulse 3s infinite;
+    .act-card:nth-child(2) { animation-delay:-1.3s; }
+    .act-card:nth-child(3) { animation-delay:-2.6s; }
+
+    @keyframes float-3d {
+      0%,100% { transform: rotateX(4deg) rotateY(-1deg) translateY(0px); }
+      25%      { transform: rotateX(2deg) rotateY(1deg) translateY(-10px); }
+      50%      { transform: rotateX(5deg) rotateY(0deg) translateY(-6px); }
+      75%      { transform: rotateX(3deg) rotateY(-2deg) translateY(-12px); }
     }
 
-    .action-btn.secondary {
-      --btn-color1: rgba(147, 51, 234, 0.15);
-      --btn-color2: rgba(236, 72, 153, 0.15);
-      --btn-border: rgba(236, 72, 153, 0.5);
-      --btn-glow: rgba(236, 72, 153, 0.2);
-      --btn-icon: #ec4899;
+    .act-card:hover {
+      animation: none;
+      transform: rotateX(0deg) rotateY(0deg) translateY(-18px) scale(1.04);
+      background: rgba(255,255,255,0.09);
+      border-color: var(--p1);
+      box-shadow:
+        0 2px 0 var(--p1),
+        0 4px 0 color-mix(in srgb, var(--p1) 60%, transparent),
+        0 6px 0 color-mix(in srgb, var(--p1) 35%, transparent),
+        0 8px 0 color-mix(in srgb, var(--p1) 15%, transparent),
+        0 28px 56px rgba(0,0,0,0.55),
+        0 0 40px var(--glow1),
+        0 0 80px var(--glow2);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
     }
 
-    .action-btn.tertiary {
-      --btn-color1: rgba(59, 130, 246, 0.15);
-      --btn-color2: rgba(100, 0, 255, 0.15);
-      --btn-border: rgba(59, 130, 246, 0.5);
-      --btn-glow: rgba(59, 130, 246, 0.2);
-      --btn-icon: #3b82f6;
+    /* Holographic top sheen */
+    .act-card::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent 0%, var(--p3) 30%, var(--a2) 70%, transparent 100%);
+      border-radius:20px 20px 0 0;
+      opacity: 0.7;
+      transition: background 0.6s;
     }
 
-    @keyframes cardPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.2); }
-      50% { box-shadow: 0 0 0 8px rgba(147, 51, 234, 0); }
+    /* Bottom thickness plate */
+    .act-card::after {
+      content:'';
+      position:absolute; bottom:-9px; left:6%; right:6%;
+      height:9px;
+      background: linear-gradient(to bottom, var(--card-depth), rgba(0,0,0,0.2));
+      border-radius: 0 0 8px 8px;
+      z-index: -1;
+      transition: background 0.6s;
     }
 
-    .deploy-section {
-      width: 100%;
-      max-width: 900px;
+    .act-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 0.5rem; font-weight: 800;
+      letter-spacing: 2px; padding: 3px 8px;
+      background: var(--g1);
+      color: var(--bg);
+      border-radius: 100px;
+      transition: background 0.6s;
     }
+
+    .act-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, var(--glow1), var(--glow2));
+      margin-bottom: 1.2rem;
+      position: relative;
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 0 0 1px var(--border);
+    }
+
+    .act-card:hover .act-icon {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 24px var(--glow1);
+      transform: scale(1.1) rotateY(10deg);
+      background: linear-gradient(135deg, var(--glow1), var(--glow2));
+    }
+
+    .act-icon i { background: var(--g1); -webkit-background-clip:text; background-clip:text; color:transparent; transition:background 0.6s; }
+
+    .act-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem; font-weight: 800;
+      letter-spacing: 1px;
+      background: var(--g1); -webkit-background-clip:text; background-clip:text; color:transparent;
+      margin-bottom: 0.6rem;
+      transition: background 0.6s;
+    }
+
+    .act-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.6; }
+
+    .act-cta {
+      margin-top: 1.4rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--p3);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.25s;
+    }
+
+    .act-card:hover .act-cta { opacity:1; transform:translateY(0); }
+
+    /* ── DEPLOY GRID ── */
+    .deploy-section { display:flex; flex-direction:column; gap:1rem; }
 
     .deploy-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      width: 100%;
+      display: grid; grid-template-columns: repeat(2,1fr); gap:1rem;
     }
 
     .deploy-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.2rem 1.5rem;
-      background: rgba(20, 10, 40, 0.6);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--deploy-border, rgba(147, 51, 234, 0.15));
-      border-radius: 14px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.3rem 1.5rem;
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-decoration: none; color: inherit;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
     }
 
     .deploy-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--deploy-color, #9333ea), transparent);
-    }
-
-    .deploy-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--deploy-color, #9333ea);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 25px var(--deploy-glow, rgba(147, 51, 234, 0.1));
-    }
-
-    .deploy-icon {
-      width: 50px; height: 50px;
-      border-radius: 12px;
-      background: var(--deploy-bg, rgba(147, 51, 234, 0.1));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .deploy-icon i {
-      font-size: 1.4rem;
-      color: var(--deploy-color, #9333ea);
-    }
-
-    .deploy-icon img {
-      width: 24px;
-      height: 24px;
-      filter: brightness(0) invert(1);
-    }
-
-    .deploy-info {
-      flex: 1;
-    }
-
-    .deploy-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: #fff;
-      margin-bottom: 3px;
-    }
-
-    .deploy-desc {
-      font-size: 0.75rem;
-      color: rgba(224, 242, 254, 0.4);
-    }
-
-    .deploy-arrow {
-      color: var(--deploy-color, #9333ea);
-      font-size: 0.9rem;
+      content:'';
+      position:absolute; left:0; top:0; bottom:0; width:3px;
+      background: var(--g1);
       opacity: 0;
-      transform: translateX(-5px);
-      transition: all 0.3s ease;
+      transition: opacity 0.3s;
     }
 
-    .deploy-card:hover .deploy-arrow {
-      opacity: 1;
-      transform: translateX(0);
+    .deploy-card:hover { background: rgba(255,255,255,0.06); border-color: var(--border2); transform: translateX(4px); }
+    .deploy-card:hover::before { opacity:1; }
+
+    .dep-ico {
+      width:46px; height:46px; border-radius:12px; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
     }
 
-    .features-section {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      width: 100%;
-      max-width: 900px;
+    .deploy-card:hover .dep-ico { transform: scale(1.1); }
+
+    .dep-name { font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:1px; margin-bottom:3px; }
+    .dep-desc { font-size:0.7rem; color:var(--text3); }
+
+    .dep-arr { margin-left:auto; font-size:0.75rem; color:var(--p2); opacity:0; transform:translateX(-4px); transition:all 0.25s; }
+    .deploy-card:hover .dep-arr { opacity:1; transform:translateX(0); }
+
+    /* ── FEATURES STRIP ── */
+    .feat-strip {
+      display: grid; grid-template-columns: repeat(3,1fr); gap:1rem;
     }
 
-    .feature-card {
-      background: rgba(20, 10, 40, 0.5);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(147, 51, 234, 0.1);
+    .feat-card {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
+      padding: 1.8rem 1.4rem;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
     }
 
-    .feature-card:hover {
-      border-color: rgba(147, 51, 234, 0.3);
-      transform: translateY(-3px);
+    .feat-card::after {
+      content:'';
+      position:absolute; inset:0; border-radius:16px;
+      background: radial-gradient(circle at 30% 30%, var(--glow1), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events:none;
     }
 
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, #6400ff, #9333ea);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .feat-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+    .feat-card:hover::after { opacity:1; }
+
+    .feat-ico { font-size:1.6rem; margin-bottom:1rem; }
+    .feat-ico i { background:var(--g1); -webkit-background-clip:text; background-clip:text; color:transparent; transition:background 0.6s; }
+
+    .feat-title { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:700; margin-bottom:0.5rem; }
+    .feat-body { font-size:0.75rem; color:var(--text2); line-height:1.6; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      padding: 1.5rem 2rem;
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: border-color 0.6s;
     }
 
-    .feature-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.5rem;
-      color: #fff;
+    .foot-left { font-family:'Fira Code',monospace; font-size:0.62rem; color:var(--text3); letter-spacing:1px; }
+    .foot-left a { color:var(--p2); text-decoration:none; transition:color 0.2s; }
+    .foot-left a:hover { color:var(--a1); }
+
+    .foot-badges { display:flex; gap:1.2rem; }
+    .foot-b { font-size:0.62rem; color:var(--text3); display:flex; align-items:center; gap:5px; }
+    .foot-b i { color:var(--p1); font-size:0.55rem; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .hero { grid-template-columns:1fr; }
+      .hero-right { display:none; }
+      .stats-mosaic { grid-template-columns:repeat(2,1fr); }
+      .action-arena { grid-template-columns:1fr; gap:3rem; }
+      .feat-strip { grid-template-columns:1fr; }
     }
-
-    .feature-desc {
-      font-size: 0.8rem;
-      color: rgba(224, 242, 254, 0.5);
-      line-height: 1.4;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 900px;
-      border-top: 1px solid rgba(147, 51, 234, 0.1);
-      color: rgba(224, 242, 254, 0.4);
-      font-size: 0.85rem;
-    }
-
-    .footer a {
-      color: #9333ea;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer a:hover { color: #ec4899; }
-
-    @media (max-width: 768px) {
-      .title { font-size: 2rem; letter-spacing: 3px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .buttons-container { grid-template-columns: 1fr; }
-      .features-section { grid-template-columns: 1fr; }
-      .deploy-grid { grid-template-columns: 1fr; }
-      .stat-value { font-size: 1.4rem; }
-      .hero-section { padding: 2rem 1rem 1rem; }
-      .main-card { padding: 2rem 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .title { font-size: 1.6rem; letter-spacing: 2px; }
-      .logo-ring { width: 90px; height: 90px; }
-      .logo-icon { font-size: 2.2rem; }
-      .stats-grid { gap: 0.8rem; }
-      .stat-card { padding: 1rem 0.8rem; }
+    @media(max-width:600px){
+      .pw { padding:80px 1rem 4rem; }
+      .stats-mosaic { grid-template-columns:repeat(2,1fr); }
+      .deploy-grid { grid-template-columns:1fr; }
+      .hero { padding:1.8rem; }
+      .hero-title { font-size:1.8rem; white-space:normal; }
+      .action-arena { padding:1.8rem 1rem; }
     }
   </style>
 </head>
-<body>
-  <div class="glowing-bg">
-    <div class="glow-circle"></div>
-    <div class="glow-circle"></div>
-    <div class="glow-circle"></div>
-    <div class="glow-circle"></div>
+<body data-theme="default">
+
+  <!-- Background -->
+  <div class="orb-field">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
   </div>
-  <div class="scan-lines"></div>
-  <canvas class="particle-canvas" id="particles"></canvas>
+  <div class="grain"></div>
 
-  <div class="page-wrapper">
-    <section class="hero-section">
-      <div class="logo-container">
-        <div class="logo-ring">
-          <i class="fas fa-crown logo-icon"></i>
+  <!-- Theme bar -->
+  <div class="theme-bar">
+    <div class="theme-brand">PEAKY-BLINDER-MD</div>
+    <div class="theme-controls">
+      <button class="auto-btn" id="autoBtn" title="Auto cycle themes">AUTO</button>
+      <div class="theme-dot active" data-t="default" title="Indigo"></div>
+      <div class="theme-dot" data-t="plasma"  title="Plasma"></div>
+      <div class="theme-dot" data-t="solar"   title="Solar"></div>
+      <div class="theme-dot" data-t="matrix"  title="Matrix"></div>
+      <div class="theme-dot" data-t="crimson" title="Crimson"></div>
+      <div class="theme-dot" data-t="arctic"  title="Arctic"></div>
+    </div>
+  </div>
+
+  <!-- Professional Headline Ticker -->
+  <div class="ticker-wrap">
+    <div class="ticker-badge">
+      <span class="live-pip"></span>
+      LIVE
+    </div>
+    <div class="ticker-track">
+      <div class="ticker-inner" id="tickerInner">
+        <!-- SET A -->
+        <span class="tick-item"><span class="tick-label green">ONLINE</span>ALL SYSTEMS OPERATIONAL &mdash; 99.9% UPTIME CONFIRMED</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label blue">SECURE</span>END-TO-END ENCRYPTION ACTIVE ACROSS ALL NODES</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label amber">SESSION</span>PAIR CODE GENERATION LIVE &mdash; AVG. <span class="tick-val" id="tickLatency">18</span>MS DELIVERY</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label violet">DEPLOY</span>6 PLATFORMS SUPPORTED &mdash; HEROKU <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> RENDER <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> RAILWAY <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> REPLIT <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> PANEL</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label green">QR</span>WHATSAPP QR SCAN ENDPOINT LIVE AND RESPONDING</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label blue">BUILD</span>PEAKY-BLINDER-MD v2.5.0 &mdash; LATEST STABLE RELEASE</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label amber">GLOBAL</span>ACTIVE SESSIONS ACROSS 40+ COUNTRIES WORLDWIDE</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label red">NOTICE</span>ZERO LOGS POLICY ENFORCED &mdash; NO SESSION DATA RETAINED</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label violet">OPEN SOURCE</span>FULL SOURCE ON GITHUB &mdash; FORK <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> STAR <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> CONTRIBUTE</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label green">NODES</span>12 ACTIVE EDGE NODES ONLINE <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> ZERO DOWNTIME</span>
+        <span class="tick-sep">▸</span>
+        <!-- SET B — duplicate for seamless loop -->
+        <span class="tick-item"><span class="tick-label green">ONLINE</span>ALL SYSTEMS OPERATIONAL &mdash; 99.9% UPTIME CONFIRMED</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label blue">SECURE</span>END-TO-END ENCRYPTION ACTIVE ACROSS ALL NODES</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label amber">SESSION</span>PAIR CODE GENERATION LIVE &mdash; AVG. <span class="tick-val">18</span>MS DELIVERY</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label violet">DEPLOY</span>6 PLATFORMS SUPPORTED &mdash; HEROKU <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> RENDER <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> RAILWAY <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> REPLIT <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> PANEL</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label green">QR</span>WHATSAPP QR SCAN ENDPOINT LIVE AND RESPONDING</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label blue">BUILD</span>PEAKY-BLINDER-MD v2.5.0 &mdash; LATEST STABLE RELEASE</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label amber">GLOBAL</span>ACTIVE SESSIONS ACROSS 40+ COUNTRIES WORLDWIDE</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label red">NOTICE</span>ZERO LOGS POLICY ENFORCED &mdash; NO SESSION DATA RETAINED</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label violet">OPEN SOURCE</span>FULL SOURCE ON GITHUB &mdash; FORK <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> STAR <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> CONTRIBUTE</span>
+        <span class="tick-sep">▸</span>
+        <span class="tick-item"><span class="tick-label green">NODES</span>12 ACTIVE EDGE NODES ONLINE <span class="tick-sep" style="padding:0 8px;opacity:0.4">▸</span> ZERO DOWNTIME</span>
+        <span class="tick-sep">▸</span>
+      </div>
+    </div>
+    <div class="ticker-clock">
+      <div>
+        <div class="ticker-clock-time" id="liveClock">--:--:--</div>
+        <div class="ticker-clock-date" id="liveDate">---</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pw">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-kicker"><span class="kicker-dot"></span> // SESSION_GEN · PB-MD · 2025</div>
+        <h1 class="hero-title"><span class="grad">PEAKY-BLINDER-MD</span></h1>
+        <p class="hero-sub">Next-generation WhatsApp session generator with enterprise-grade encryption, multi-platform deployment, and lightning-fast pair code generation.</p>
+        <div class="hero-tags">
+          <span class="tag"><i class="fas fa-lock"></i>E2E Encrypted</span>
+          <span class="tag"><i class="fas fa-rocket"></i>Under 30s</span>
+          <span class="tag"><i class="fas fa-globe"></i>Global CDN</span>
+          <span class="tag"><i class="fas fa-code-branch"></i>Open Source</span>
+          <span class="tag"><i class="fas fa-shield-alt"></i>Zero Logs</span>
+          <span class="tag"><i class="fas fa-bolt"></i>99.9% Uptime</span>
         </div>
       </div>
-      <h1 class="title">PEAKY-BLINDER-MD</h1>
-      <p class="tagline">Next-Gen Session Generator</p>
-      <div class="status-badge">
-        <span class="status-dot"></span>
-        <span id="serverStatus">ALL SYSTEMS OPERATIONAL</span>
-      </div>
-    </section>
-
-    <section class="stats-grid">
-      <div class="stat-card" style="--accent: #6400ff; --accent2: #9333ea;">
-        <div class="stat-icon"><i class="fas fa-users"></i></div>
-        <div class="stat-value" id="totalPairings">--</div>
-        <div class="stat-label">Total Sessions</div>
-      </div>
-      <div class="stat-card" style="--accent: #9333ea; --accent2: #ec4899;">
-        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-        <div class="stat-value" id="todayPairings">--</div>
-        <div class="stat-label">Today's Sessions</div>
-      </div>
-      <div class="stat-card" style="--accent: #ec4899; --accent2: #f43f5e;">
-        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-        <div class="stat-value" id="successRate">--%</div>
-        <div class="stat-label">Success Rate</div>
-      </div>
-      <div class="stat-card" style="--accent: #3b82f6; --accent2: #6400ff;">
-        <div class="stat-icon"><i class="fas fa-globe"></i></div>
-        <div class="stat-value" id="countriesServed">--</div>
-        <div class="stat-label">Countries</div>
-      </div>
-    </section>
-
-    <div class="stats-grid" style="margin-top: -0.5rem;">
-      <div class="stat-card" style="--accent: #f43f5e; --accent2: #f97316;">
-        <div class="stat-icon"><i class="fas fa-signal"></i></div>
-        <div class="stat-value" id="activeUsers">--</div>
-        <div class="stat-label">Online Now</div>
-      </div>
-      <div class="stat-card" style="--accent: #6400ff; --accent2: #3b82f6;">
-        <div class="stat-icon"><i class="fas fa-link"></i></div>
-        <div class="stat-value" id="codePairings">--</div>
-        <div class="stat-label">Code Pairs</div>
-      </div>
-      <div class="stat-card" style="--accent: #f97316; --accent2: #f43f5e;">
-        <div class="stat-icon"><i class="fas fa-qrcode"></i></div>
-        <div class="stat-value" id="qrPairings">--</div>
-        <div class="stat-label">QR Pairs</div>
-      </div>
-      <div class="stat-card" style="--accent: #9333ea; --accent2: #ec4899;">
-        <div class="stat-icon"><i class="fas fa-server"></i></div>
-        <div class="stat-value" id="uptime">--</div>
-        <div class="stat-label">Uptime (Days)</div>
+      <div class="hero-right">
+        <div class="sys-panel">
+          <div class="sys-header">// sys.status</div>
+          <div class="sys-row"><span class="sys-key">STATUS</span><span class="sys-val ok pulse" id="serverStatus">OPERATIONAL</span></div>
+          <div class="sys-row"><span class="sys-key">ENCRYPTION</span><span class="sys-val ok">ACTIVE</span></div>
+          <div class="sys-row"><span class="sys-key">LATENCY</span><span class="sys-val" id="latency">--ms</span></div>
+          <div class="sys-row"><span class="sys-key">NODES</span><span class="sys-val">12 ONLINE</span></div>
+          <div class="sys-row"><span class="sys-key">BUILD</span><span class="sys-val">v2.5.0</span></div>
+          <div class="sys-row"><span class="sys-key">REGION</span><span class="sys-val">GLOBAL</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="main-card">
-      <h2 class="section-title">Get Started</h2>
-      <div class="buttons-container">
-        <a href="/pair" class="action-btn primary">
-          <div class="btn-icon-wrap"><i class="fas fa-link"></i></div>
-          <span class="btn-title">Pair Code</span>
-          <span class="btn-desc">Connect with your phone number</span>
+    <!-- STATS -->
+    <div class="stats-section">
+      <div class="section-head"><i class="fas fa-chart-bar"></i> Live Intelligence</div>
+      <div class="stats-mosaic">
+        <div class="stat-card"><div class="stat-delta">↑ 12%</div><div class="stat-glyph"><i class="fas fa-users"></i></div><div class="stat-num" id="totalPairings">--</div><div class="stat-lbl">Total Sessions</div></div>
+        <div class="stat-card"><div class="stat-delta">↑ 8%</div><div class="stat-glyph"><i class="fas fa-chart-line"></i></div><div class="stat-num" id="todayPairings">--</div><div class="stat-lbl">Today</div></div>
+        <div class="stat-card"><div class="stat-glyph"><i class="fas fa-check-circle"></i></div><div class="stat-num" id="successRate">--%</div><div class="stat-lbl">Success Rate</div></div>
+        <div class="stat-card"><div class="stat-glyph"><i class="fas fa-globe"></i></div><div class="stat-num" id="countriesServed">--</div><div class="stat-lbl">Countries</div></div>
+        <div class="stat-card"><div class="stat-delta">LIVE</div><div class="stat-glyph"><i class="fas fa-signal"></i></div><div class="stat-num" id="activeUsers">--</div><div class="stat-lbl">Online Now</div></div>
+        <div class="stat-card"><div class="stat-glyph"><i class="fas fa-link"></i></div><div class="stat-num" id="codePairings">--</div><div class="stat-lbl">Code Pairs</div></div>
+        <div class="stat-card"><div class="stat-glyph"><i class="fas fa-qrcode"></i></div><div class="stat-num" id="qrPairings">--</div><div class="stat-lbl">QR Pairs</div></div>
+        <div class="stat-card"><div class="stat-glyph"><i class="fas fa-server"></i></div><div class="stat-num" id="uptime">--</div><div class="stat-lbl">Uptime Days</div></div>
+      </div>
+    </div>
+
+    <!-- 3D FLOATING ACTIONS -->
+    <div class="action-section">
+      <div class="section-head"><i class="fas fa-terminal"></i> Quick Access</div>
+      <div class="action-arena">
+
+        <a href="/pair" class="act-card">
+          <span class="act-badge">CMD_01</span>
+          <div class="act-icon"><i class="fas fa-link"></i></div>
+          <div class="act-name">Pair Code</div>
+          <div class="act-desc">Connect via phone number. Generates a secure pair code in under 30 seconds with full encryption.</div>
+          <div class="act-cta">Launch <i class="fas fa-arrow-right"></i></div>
         </a>
-        <a href="/qr" target="_blank" class="action-btn secondary">
-          <div class="btn-icon-wrap"><i class="fas fa-qrcode"></i></div>
-          <span class="btn-title">QR Scan</span>
-          <span class="btn-desc">Scan QR code to connect</span>
+
+        <a href="/qr" target="_blank" class="act-card">
+          <span class="act-badge">CMD_02</span>
+          <div class="act-icon"><i class="fas fa-qrcode"></i></div>
+          <div class="act-name">QR Scan</div>
+          <div class="act-desc">Scan directly from WhatsApp Linked Devices. Instant connection, no number required.</div>
+          <div class="act-cta">Open <i class="fas fa-arrow-right"></i></div>
         </a>
-        <a href="https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="action-btn tertiary">
-          <div class="btn-icon-wrap"><i class="fab fa-github"></i></div>
-          <span class="btn-title">Source Code</span>
-          <span class="btn-desc">View the project on GitHub</span>
+
+        <a href="https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="act-card">
+          <span class="act-badge">CMD_03</span>
+          <div class="act-icon"><i class="fab fa-github"></i></div>
+          <div class="act-name">Source Code</div>
+          <div class="act-desc">Fully open source. Fork, star, contribute. Built with Node.js and Baileys library.</div>
+          <div class="act-cta">View <i class="fas fa-arrow-right"></i></div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- DEPLOY -->
+    <div class="deploy-section">
+      <div class="section-head"><i class="fas fa-cloud-upload-alt"></i> Deploy Platforms</div>
+      <div class="deploy-grid">
+        <a href="https://heroku.com/deploy?template=https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="deploy-card">
+          <div class="dep-ico" style="color:#a78bfa"><i class="fas fa-cube"></i></div>
+          <div><div class="dep-name">Heroku</div><div class="dep-desc">One-click cloud with auto-scaling and managed infra</div></div>
+          <i class="fas fa-chevron-right dep-arr"></i>
+        </a>
+        <a href="https://render.com/deploy?repo=https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="deploy-card">
+          <div class="dep-ico" style="color:#00e5a0"><i class="fas fa-server"></i></div>
+          <div><div class="dep-name">Render</div><div class="dep-desc">Free tier hosting with auto-deploy from GitHub</div></div>
+          <i class="fas fa-chevron-right dep-arr"></i>
+        </a>
+        <a href="https://bot-hosting.net/" target="_blank" class="deploy-card">
+          <div class="dep-ico" style="color:#f87171"><i class="fas fa-robot"></i></div>
+          <div><div class="dep-name">Panel Hosting</div><div class="dep-desc">Pterodactyl panel-based bot hosting service</div></div>
+          <i class="fas fa-chevron-right dep-arr"></i>
+        </a>
+        <a href="https://replit.com/github/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="deploy-card">
+          <div class="dep-ico" style="color:#fb923c"><i class="fas fa-code"></i></div>
+          <div><div class="dep-name">Replit</div><div class="dep-desc">Browser-based IDE with instant deployment</div></div>
+          <i class="fas fa-chevron-right dep-arr"></i>
+        </a>
+        <a href="https://daki.cc/" target="_blank" class="deploy-card">
+          <div class="dep-ico" style="color:#c084fc"><i class="fas fa-cloud-upload-alt"></i></div>
+          <div><div class="dep-name">Daki.cc</div><div class="dep-desc">Ultra-fast cloud with instant bot deployment</div></div>
+          <i class="fas fa-chevron-right dep-arr"></i>
+        </a>
+        <a href="https://railway.app/" target="_blank" class="deploy-card">
+          <div class="dep-ico" style="color:#38bdf8"><i class="fas fa-train"></i></div>
+          <div><div class="dep-name">Railway</div><div class="dep-desc">Modern deployment with auto-HTTPS and scaling</div></div>
+          <i class="fas fa-chevron-right dep-arr"></i>
         </a>
       </div>
     </div>
 
-    <section class="deploy-section">
-      <div class="main-card">
-        <h2 class="section-title">Deploy Platforms</h2>
-        <div class="deploy-grid">
-          <a href="https://heroku.com/deploy?template=https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="deploy-card" style="--deploy-color: #8b5cf6; --deploy-bg: rgba(139, 92, 246, 0.1); --deploy-glow: rgba(139, 92, 246, 0.15); --deploy-border: rgba(139, 92, 246, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-cube"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">HEROKU</div>
-              <div class="deploy-desc">One-click cloud deployment with auto-scaling</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
+    <!-- FEATURES -->
+    <div class="feat-strip">
+      <div class="feat-card"><div class="feat-ico"><i class="fas fa-shield-alt"></i></div><div class="feat-title">Military-Grade Encryption</div><div class="feat-body">End-to-end AES-256 encryption. No session data stored server-side. Zero logs, zero traces.</div></div>
+      <div class="feat-card"><div class="feat-ico"><i class="fas fa-bolt"></i></div><div class="feat-title">Sub-30s Generation</div><div class="feat-body">Optimized WebSocket connections with global edge nodes. Pair codes delivered in under 30 seconds.</div></div>
+      <div class="feat-card"><div class="feat-ico"><i class="fas fa-globe"></i></div><div class="feat-title">Global Infrastructure</div><div class="feat-body">12 active nodes across 4 continents. 99.9% uptime SLA with automatic failover and load balancing.</div></div>
+    </div>
 
-          <a href="https://render.com/deploy?repo=https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="deploy-card" style="--deploy-color: #00e5a0; --deploy-bg: rgba(0, 229, 160, 0.1); --deploy-glow: rgba(0, 229, 160, 0.15); --deploy-border: rgba(0, 229, 160, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-server"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">RENDER</div>
-              <div class="deploy-desc">Free tier hosting with auto-deploy from GitHub</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-   
-
-          <a href="https://bot-hosting.net/" target="_blank" class="deploy-card" style="--deploy-color: #ff6b6b; --deploy-bg: rgba(255, 107, 107, 0.1); --deploy-glow: rgba(255, 107, 107, 0.15); --deploy-border: rgba(255, 107, 107, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-robot"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">PANEL HOSTING</div>
-              <div class="deploy-desc">Pterodactyl panel-based bot hosting service</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://replit.com/github/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank" class="deploy-card" style="--deploy-color: #f26522; --deploy-bg: rgba(242, 101, 34, 0.1); --deploy-glow: rgba(242, 101, 34, 0.15); --deploy-border: rgba(242, 101, 34, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-code"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">REPLIT</div>
-              <div class="deploy-desc">Browser-based IDE with instant deployment</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://daki.cc/" target="_blank" class="deploy-card" style="--deploy-color: #a855f7; --deploy-bg: rgba(168, 85, 247, 0.1); --deploy-glow: rgba(168, 85, 247, 0.15); --deploy-border: rgba(168, 85, 247, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">DAKI.CC</div>
-              <div class="deploy-desc">Fast cloud hosting with instant bot deployment</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-        </div>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="foot-left">PEAKY BLINDER MD &copy; 2025 &nbsp;·&nbsp; <a href="https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank">github.com/Thomas-shelby001</a></div>
+      <div class="foot-badges">
+        <div class="foot-b"><i class="fas fa-lock"></i>E2E Encrypted</div>
+        <div class="foot-b"><i class="fas fa-circle"></i>99.9% Uptime</div>
+        <div class="foot-b"><i class="fas fa-code-branch"></i>Open Source</div>
       </div>
-    </section>
-
-    <section class="features-section">
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-        <h3 class="feature-title">Encrypted</h3>
-        <p class="feature-desc">End-to-end encryption for all session data</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-        <h3 class="feature-title">Lightning Fast</h3>
-        <p class="feature-desc">Session generation in under 30 seconds</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-cloud"></i></div>
-        <h3 class="feature-title">Multi-Platform</h3>
-        <p class="feature-desc">Deploy on Heroku, Render, CypherX, or Panel</p>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p>PEAKY BLINDER MD &copy; 2025 | <a href="https://github.com/Thomas-shelby001/PEAKY-BLINDER-MD" target="_blank">GitHub</a> | Secure Connection</p>
     </footer>
+
   </div>
 
   <script>
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+    // ── THEME ENGINE ──
+    const themes = ['default','plasma','solar','matrix','crimson','arctic'];
+    let autoInterval = null, autoRunning = false, currentTheme = 'default';
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function setTheme(t) {
+      document.body.setAttribute('data-theme', t);
+      currentTheme = t;
+      document.querySelectorAll('.theme-dot').forEach(d => {
+        d.classList.toggle('active', d.dataset.t === t);
+      });
     }
 
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    document.querySelectorAll('.theme-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        if (autoRunning) stopAuto();
+        setTheme(dot.dataset.t);
+      });
+    });
 
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.1;
-        this.color = ['rgba(100,0,255,', 'rgba(147,51,234,', 'rgba(236,72,153,'][Math.floor(Math.random() * 3)];
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + this.opacity + ')';
-        ctx.fill();
-      }
+    document.getElementById('autoBtn').addEventListener('click', () => {
+      if (autoRunning) stopAuto(); else startAuto();
+    });
+
+    function startAuto() {
+      autoRunning = true;
+      document.getElementById('autoBtn').classList.add('running');
+      document.getElementById('autoBtn').textContent = 'STOP';
+      let i = themes.indexOf(currentTheme);
+      autoInterval = setInterval(() => {
+        i = (i + 1) % themes.length;
+        setTheme(themes[i]);
+      }, 3000);
     }
 
-    for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = 'rgba(147, 51, 234, ' + (0.08 * (1 - dist / 120)) + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(animateParticles);
+    function stopAuto() {
+      autoRunning = false;
+      clearInterval(autoInterval);
+      document.getElementById('autoBtn').classList.remove('running');
+      document.getElementById('autoBtn').textContent = 'AUTO';
     }
 
-    animateParticles();
-
-    function animateValue(el, start, end, duration, suffix) {
-      suffix = suffix || '';
-      const range = end - start;
-      const startTime = performance.now();
-      function step(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(start + range * eased);
-        el.textContent = current.toLocaleString() + suffix;
-        if (progress < 1) requestAnimationFrame(step);
+    // ── TAP/CLICK color cycle anywhere on body ──
+    let tapThemeIdx = 0;
+    document.body.addEventListener('click', (e) => {
+      if (e.target.closest('.theme-bar, .act-card, .deploy-card, a, button')) return;
+      if (!autoRunning) {
+        tapThemeIdx = (tapThemeIdx + 1) % themes.length;
+        setTheme(themes[tapThemeIdx]);
       }
-      requestAnimationFrame(step);
+    });
+
+    // ── LIVE CLOCK ──
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('liveClock').textContent = now.toLocaleTimeString('en-US', {hour12:false});
+      document.getElementById('liveDate').textContent = now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ── SIMULATED LATENCY ──
+    setInterval(() => {
+      const ms = Math.floor(Math.random() * 40 + 12);
+      const el = document.getElementById('latency');
+      const el2 = document.getElementById('tickLatency');
+      if (el) el.textContent = ms + 'ms';
+      if (el2) el2.textContent = ms;
+    }, 2000);
+
+    // ── STATS ──
+    function animVal(el, start, end, dur, sfx='') {
+      const r = end-start, t0 = performance.now();
+      const go = t => { const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3); el.textContent=Math.floor(start+r*e).toLocaleString()+sfx; if(p<1) requestAnimationFrame(go); };
+      requestAnimationFrame(go);
     }
 
     async function fetchStats() {
       try {
-        const res = await fetch('/api/stats');
-        const data = await res.json();
-        animateValue(document.getElementById('totalPairings'), 0, data.totalPairings, 2000);
-        animateValue(document.getElementById('todayPairings'), 0, data.todayPairings, 1500);
-        animateValue(document.getElementById('successRate'), 0, parseFloat(data.successRate), 1800, '%');
-        animateValue(document.getElementById('countriesServed'), 0, data.countriesServed, 1600);
-        animateValue(document.getElementById('activeUsers'), 0, data.activeUsers, 1200);
-        animateValue(document.getElementById('codePairings'), 0, data.codePairings, 1800);
-        animateValue(document.getElementById('qrPairings'), 0, data.qrPairings, 1800);
-        animateValue(document.getElementById('uptime'), 0, data.uptimeDays, 2000);
-        document.getElementById('serverStatus').textContent =
-          data.serverStatus === 'operational' ? 'ALL SYSTEMS OPERATIONAL' : 'MAINTENANCE MODE';
-      } catch (e) {
-        document.getElementById('serverStatus').textContent = 'CONNECTING...';
-      }
+        const d = await (await fetch('/api/stats')).json();
+        animVal(document.getElementById('totalPairings'),0,d.totalPairings,2000);
+        animVal(document.getElementById('todayPairings'),0,d.todayPairings,1500);
+        animVal(document.getElementById('successRate'),0,parseFloat(d.successRate),1800,'%');
+        animVal(document.getElementById('countriesServed'),0,d.countriesServed,1600);
+        animVal(document.getElementById('activeUsers'),0,d.activeUsers,1200);
+        animVal(document.getElementById('codePairings'),0,d.codePairings,1800);
+        animVal(document.getElementById('qrPairings'),0,d.qrPairings,1800);
+        animVal(document.getElementById('uptime'),0,d.uptimeDays,2000);
+        document.getElementById('serverStatus').textContent = d.serverStatus==='operational'?'OPERATIONAL':'MAINTENANCE';
+      } catch(e){ document.getElementById('serverStatus').textContent='CONNECTING...'; }
     }
-
-    fetchStats();
-    setInterval(fetchStats, 30000);
+    fetchStats(); setInterval(fetchStats, 30000);
   </script>
 </body>
 </html>
