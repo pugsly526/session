@@ -1,6 +1,6 @@
 {
-  "name": "PEAKY-BLINDER-MD-session",
-  "description": "Peaky blinders WhatsApp Session Generator",
+  "name": "june-x-session",
+  "description": "JUNE-X WhatsApp Session Generator",
   "main": "./voltah.js",
   "engines": {
     "npm": ">=9.7.2",
@@ -9,12 +9,12 @@
   "scripts": {
     "start": "node voltah.js"
   },
-  "author": "Mr Lee",
+  "author": "Giddy Tennor",
   "license": "GPL-3.0 license",
   "dependencies": {
     "baileys-pro": "latest",
     "maher-zubair-baileys": "^6.6.5",
-    "@whiskeysockets/baileys": "v7.0.0-rc.9",
+    "@whiskeysockets/baileys": "npm:wileys",
     "qrcode": "^1.5.3",
     "awesome-phonenumber": "^2.64.0",
     "pino": "^8.1.0",
