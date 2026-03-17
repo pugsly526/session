@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node voltah.js"
   },
-  "author": "Giddy Tennor",
+  "author": "Mr Lee",
   "license": "GPL-3.0 license",
   "dependencies": {
     "baileys-pro": "latest",
